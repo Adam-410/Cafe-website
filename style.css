@@ -750,6 +750,10 @@ em {
   display: block;
 }
 
+.divider-fill   { fill:   var(--color-cream); }
+
+.divider-stroke { stroke: var(--color-terracotta); }
+
 /* ──────────────── 11. SECTION HEADER ──────────────── */
 .section-header {
   text-align: center;
