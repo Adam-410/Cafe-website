@@ -1517,7 +1517,7 @@ cite {
 
 .footer-nav ul {
   display: flex;
-  gap: var(--space-xl);
+  gap: var(--space-lg);
 }
 
 .footer-nav a {

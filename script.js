@@ -33,6 +33,15 @@ const prefersReducedMotion = () =>
       const targetId = anchor.getAttribute('href');
       if (targetId === '#') return;
 
+      if (targetId === '#top') {
+        e.preventDefault();
+        window.scrollTo({
+          top: 0,
+          behavior: prefersReducedMotion() ? 'auto' : 'smooth'
+        });
+        return;
+      }
+
       const target = document.querySelector(targetId);
       if (!target) return;
 
