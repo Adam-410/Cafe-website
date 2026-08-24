@@ -33,20 +33,30 @@ const prefersReducedMotion = () =>
       const targetId = anchor.getAttribute('href');
       if (targetId === '#') return;
 
-      if (targetId === '#top') {
-        e.preventDefault();
-        window.scrollTo({
-          top: 0,
-          behavior: prefersReducedMotion() ? 'auto' : 'smooth'
-        });
-        return;
-      }
-
-      const target = document.querySelector(targetId);
-      if (!target) return;
-
       e.preventDefault();
-      target.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
+
+      const executeScroll = () => {
+        if (targetId === '#top') {
+          window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: prefersReducedMotion() ? 'auto' : 'smooth'
+          });
+          return;
+        }
+
+        const target = document.querySelector(targetId);
+        if (target) {
+          target.scrollIntoView({
+            behavior: prefersReducedMotion() ? 'auto' : 'smooth'
+          });
+        }
+      };
+
+      // Defer scroll dispatch slightly after drawer unlock & layout recalculation
+      requestAnimationFrame(() => {
+        setTimeout(executeScroll, 30);
+      });
     });
   });
 })();
@@ -77,26 +87,25 @@ const prefersReducedMotion = () =>
     overlay.classList.remove('active');
     document.body.style.overflow = '';
     if (siteHeader) siteHeader.classList.remove('menu-open');
-    hamburger.focus();
+    
+    // Prevent focus jump from cancelling scroll position
+    hamburger.focus({ preventScroll: true });
   };
 
   hamburger.addEventListener('click', openDrawer);
   closeBtn.addEventListener('click', closeDrawer);
   overlay.addEventListener('click', closeDrawer);
 
-  // Close drawer on nav link click
   drawer.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', closeDrawer);
   });
 
-  // Close on Escape key
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && drawer.getAttribute('aria-hidden') === 'false') {
       closeDrawer();
     }
   });
 
-  // Trap focus inside drawer when open
   drawer.addEventListener('keydown', e => {
     if (e.key !== 'Tab') return;
     const focusable = drawer.querySelectorAll(
