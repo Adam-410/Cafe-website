@@ -608,7 +608,7 @@ em {
       hsl(var(--hue-brand) 20% 19% / 0.40) 60%,
       hsl(var(--hue-brand) 20% 19% / 0.70) 100%
     ),
-    url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1600&q=85');
+    url('https://lh3.googleusercontent.com/gps-cs-s/AHRPTWnJ9S7smkgrRMJrkt8fzlPirFh90OXg71FbX5zwAputXLIVhLIwk9bKQoSgu5akudyEGbfLjv4K6jd09V4410iItPMKXluBFtHMOgBMcvKld3w4XxfQi6Grk1n81-VGSJHxVNQ=s1360-w1360-h1020-rw');
   background-size: cover;
   background-position: center;
   will-change: transform;
@@ -811,7 +811,7 @@ em {
 .about-image {
   width: 100%;
   aspect-ratio: 4/5;
-  background-image: url('https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=800&q=80');
+  background-image: url('https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlLf8ETbnNIoo5SN8nJKY2KchfHHwQJAGDak-XulX-gXjhtV3AD53oJpdRehVNrdY05oEKyY5FTICz7msxVUhUZvGrGA6lGbif5nbrxhiGWuOGvijhVkaqR22pc2JeU19za_bNB=s1360-w1360-h1020-rw');
   background-size: cover;
   background-position: center;
   border-radius: var(--radius-lg);
