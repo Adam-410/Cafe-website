@@ -126,95 +126,47 @@
         <!-- ── DRINKS PANEL ── -->
         <div class="tab-panel active" id="panel-drinks" role="tabpanel" aria-labelledby="tab-drinks">
           <div class="sub-tabs" role="tablist" aria-label="İçecek Alt Kategorileri">
-            <button class="sub-tab active" data-sub="sicak">☕ Sıcak</button>
-            <button class="sub-tab" data-sub="soguk">🧊 Soğuk</button>
+            <button class="sub-tab active" data-sub="sicak">Sıcak İçecekler</button>
+            <button class="sub-tab" data-sub="soguk">Soğuk İçecekler</button>
           </div>
 
           <div class="menu-grid">
             <!-- SICAK İÇECEKLER -->
             <div class="menu-card reveal" data-category="sicak">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=200&auto=format&fit=crop&q=80" alt="Çay" loading="lazy" />
               <div class="menu-card-body">
                 <div class="menu-card-top">
                   <span class="item-name">Çay</span>
                   <span class="item-price">₺30</span>
                 </div>
-                <p class="item-desc">İnce belli bardakta demleme çay.</p>
+                <p class="item-desc">İnce belli bardakta taze demleme çay.</p>
               </div>
             </div>
 
             <div class="menu-card reveal" data-category="sicak">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <span class="item-name">Oralet</span>
-                  <span class="item-price">₺40</span>
-                </div>
-                <p class="item-desc">Portakal aromalı sıcak içecek.</p>
-              </div>
-            </div>
-
-            <div class="menu-card reveal" data-category="sicak">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=200&auto=format&fit=crop&q=80" alt="Türk Kahvesi" loading="lazy" />
               <div class="menu-card-body">
                 <div class="menu-card-top">
                   <span class="item-name">Türk Kahvesi</span>
                   <span class="item-price">₺100</span>
                 </div>
                 <p class="item-desc">Geleneksel cezvede pişirilir. Aromalı seçenekler: Çilekli, Damla Sakızlı.</p>
-                <div class="item-tags"><span class="tag tag-popular">Popüler</span></div>
               </div>
             </div>
 
             <div class="menu-card reveal" data-category="sicak">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <span class="item-name">Nescafe</span>
-                  <span class="item-price">₺70</span>
-                </div>
-                <p class="item-desc">Sütlü köpüklü seçeneğiyle hazırlanır.</p>
-              </div>
-            </div>
-
-            <div class="menu-card reveal" data-category="sicak">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=200&auto=format&fit=crop&q=80" alt="Filtre Kahve" loading="lazy" />
               <div class="menu-card-body">
                 <div class="menu-card-top">
                   <span class="item-name">Filtre Kahve</span>
                   <span class="item-price">₺100</span>
                 </div>
-                <p class="item-desc">Yavaş demleme, zengin aroma.</p>
-                <div class="item-tags"><span class="tag tag-popular">Popüler</span></div>
+                <p class="item-desc">Yavaş demleme, zengin ve dengeli aroma.</p>
               </div>
             </div>
 
             <div class="menu-card reveal" data-category="sicak">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <span class="item-name">Salep</span>
-                  <span class="item-price">₺110</span>
-                </div>
-                <p class="item-desc">Geleneksel Türk kış içeceği, tarçınlı.</p>
-              </div>
-            </div>
-
-            <div class="menu-card reveal" data-category="sicak">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <span class="item-name">Sıcak Çikolata</span>
-                  <span class="item-price">₺110</span>
-                </div>
-                <p class="item-desc">Kremalı, kadifemsi sıcak çikolata.</p>
-              </div>
-            </div>
-
-            <div class="menu-card reveal" data-category="sicak">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <span class="item-name">Bitki Çayı</span>
-                  <span class="item-price">₺60</span>
-                </div>
-                <p class="item-desc">Nane, papatya, ıhlamur ve daha fazlası.</p>
-              </div>
-            </div>
-
-            <div class="menu-card reveal" data-category="sicak">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1610889556528-9a770e32644f?w=200&auto=format&fit=crop&q=80" alt="Menengiç Kahvesi" loading="lazy" />
               <div class="menu-card-body">
                 <div class="menu-card-top">
                   <span class="item-name">Menengiç Kahvesi</span>
@@ -225,115 +177,180 @@
               </div>
             </div>
 
-            <!-- SOĞUK İÇECEKLER -->
-            <div class="menu-card reveal" data-category="soguk" style="display:none">
+            <div class="menu-card reveal" data-category="sicak">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=200&auto=format&fit=crop&q=80" alt="Salep" loading="lazy" />
               <div class="menu-card-body">
                 <div class="menu-card-top">
-                  <span class="item-name">Pepsi / Yedigün / Ice Tea</span>
-                  <span class="item-price">₺920</span>
-                </div>
-                <p class="item-desc">Seçtiğiniz kutu içecek ile serinleyin.</p>
-              </div>
-            </div>
-
-            <div class="menu-card reveal" data-category="soguk" style="display:none">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <span class="item-name">Şişe Gazoz</span>
-                  <span class="item-price">₺60</span>
-                </div>
-                <p class="item-desc">Klasik cam şişe gazoz.</p>
-              </div>
-            </div>
-
-            <div class="menu-card reveal" data-category="soguk" style="display:none">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <span class="item-name">Sade Soda</span>
-                  <span class="item-price">₺40</span>
-                </div>
-                <p class="item-desc">Serin ve ferahlatıcı maden suyu.</p>
-              </div>
-            </div>
-
-            <div class="menu-card reveal" data-category="soguk" style="display:none">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <span class="item-name">Meyveli Soda</span>
-                  <span class="item-price">₺50</span>
-                </div>
-                <p class="item-desc">Meyve aromalı soda seçenekleri.</p>
-              </div>
-            </div>
-
-            <div class="menu-card reveal" data-category="soguk" style="display:none">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <span class="item-name">Churchill</span>
+                  <span class="item-name">Salep</span>
                   <span class="item-price">₺110</span>
                 </div>
-                <p class="item-desc">Özel enerji içeceği.</p>
+                <p class="item-desc">Geleneksel kıvamında, tarçın eşliğinde sıcak servis.</p>
               </div>
             </div>
 
-            <div class="menu-card reveal" data-category="soguk" style="display:none">
+            <div class="menu-card reveal" data-category="sicak">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=200&auto=format&fit=crop&q=80" alt="Sıcak Çikolata" loading="lazy" />
               <div class="menu-card-body">
                 <div class="menu-card-top">
-                  <span class="item-name">Black Bruin</span>
-                  <span class="item-price">₺80</span>
+                  <span class="item-name">Sıcak Çikolata</span>
+                  <span class="item-price">₺110</span>
                 </div>
-                <p class="item-desc">Soğuk içecek.</p>
+                <p class="item-desc">Yoğun kakaolu ve kadifemsi kıvamlı sıcak çikolata.</p>
               </div>
             </div>
 
-            <div class="menu-card reveal" data-category="soguk" style="display:none">
+            <div class="menu-card reveal" data-category="sicak">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1597481499750-3e6b22637e12?w=200&auto=format&fit=crop&q=80" alt="Bitki Çayı" loading="lazy" />
               <div class="menu-card-body">
                 <div class="menu-card-top">
-                  <span class="item-name">Red Bull</span>
-                  <span class="item-price">₺120</span>
-                </div>
-                <p class="item-desc">Enerji içeceği.</p>
-              </div>
-            </div>
-
-            <div class="menu-card reveal" data-category="soguk" style="display:none">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <span class="item-name">Meyve Suyu</span>
-                  <span class="item-price">₺70</span>
-                </div>
-                <p class="item-desc">Taze sıkılmış veya meyve suyu.</p>
-              </div>
-            </div>
-
-            <div class="menu-card reveal" data-category="soguk" style="display:none">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <span class="item-name">Ayran</span>
+                  <span class="item-name">Bitki Çayı</span>
                   <span class="item-price">₺60</span>
                 </div>
-                <p class="item-desc">Serinleten geleneksel Türk içeceği.</p>
+                <p class="item-desc">Ihlamur, adaçayı, yeşil çay, papatya ve nane-limon seçenekleri.</p>
               </div>
             </div>
 
+            <div class="menu-card reveal" data-category="sicak">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1541167760496-1628856ab772?w=200&auto=format&fit=crop&q=80" alt="Nescafe" loading="lazy" />
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <span class="item-name">Nescafe</span>
+                  <span class="item-price">₺70</span>
+                </div>
+                <p class="item-desc">Klasik veya sütlü köpüklü sıcak kahve.</p>
+              </div>
+            </div>
+
+            <div class="menu-card reveal" data-category="sicak">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1613478223719-2ab802602423?w=200&auto=format&fit=crop&q=80" alt="Oralet" loading="lazy" />
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <span class="item-name">Oralet</span>
+                  <span class="item-price">₺40</span>
+                </div>
+                <p class="item-desc">Portakal ve kivi aromalı nostaljik sıcak içecek.</p>
+              </div>
+            </div>
+
+            <!-- SOĞUK İÇECEKLER -->
             <div class="menu-card reveal" data-category="soguk" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1523371067569-533036427387?w=200&auto=format&fit=crop&q=80" alt="Limonata" loading="lazy" />
               <div class="menu-card-body">
                 <div class="menu-card-top">
                   <span class="item-name">Limonata</span>
                   <span class="item-price">₺120</span>
                 </div>
-                <p class="item-desc">Taze sıkılmış limon, ferahlatıcı ve doğal.</p>
-                <div class="item-tags"><span class="tag tag-popular">Popüler</span></div>
+                <p class="item-desc">Taze sıkılmış limon ve taze nane ile ev yapımı lezzet.</p>
               </div>
             </div>
 
             <div class="menu-card reveal" data-category="soguk" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=200&auto=format&fit=crop&q=80" alt="Churchill" loading="lazy" />
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <span class="item-name">Churchill</span>
+                  <span class="item-price">₺110</span>
+                </div>
+                <p class="item-desc">Maden suyu, taze limon suyu ve özel tuz dengesiyle.</p>
+              </div>
+            </div>
+
+            <div class="menu-card reveal" data-category="soguk" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=200&auto=format&fit=crop&q=80" alt="Kutu İçecekler" loading="lazy" />
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <span class="item-name">Pepsi / Yedigün / Ice Tea</span>
+                  <span class="item-price">₺70</span>
+                </div>
+                <p class="item-desc">Soğuk servis edilen kutu meşrubat çeşitleri.</p>
+              </div>
+            </div>
+
+            <div class="menu-card reveal" data-category="soguk" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1527661591475-527312dd65f5?w=200&auto=format&fit=crop&q=80" alt="Şişe Gazoz" loading="lazy" />
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <span class="item-name">Şişe Gazoz</span>
+                  <span class="item-price">₺60</span>
+                </div>
+                <p class="item-desc">Klasik cam şişe ferahlatıcı gazoz.</p>
+              </div>
+            </div>
+
+            <div class="menu-card reveal" data-category="soguk" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=200&auto=format&fit=crop&q=80" alt="Ayran" loading="lazy" />
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <span class="item-name">Ayran</span>
+                  <span class="item-price">₺60</span>
+                </div>
+                <p class="item-desc">Geleneksel soğuk ve ferahlatıcı yoğurt içeceği.</p>
+              </div>
+            </div>
+
+            <div class="menu-card reveal" data-category="soguk" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1559839914-17aae19cec71?w=200&auto=format&fit=crop&q=80" alt="Sade Soda" loading="lazy" />
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <span class="item-name">Sade Soda</span>
+                  <span class="item-price">₺40</span>
+                </div>
+                <p class="item-desc">Doğal mineralli soğuk maden suyu.</p>
+              </div>
+            </div>
+
+            <div class="menu-card reveal" data-category="soguk" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=200&auto=format&fit=crop&q=80" alt="Meyveli Soda" loading="lazy" />
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <span class="item-name">Meyveli Soda</span>
+                  <span class="item-price">₺50</span>
+                </div>
+                <p class="item-desc">Limon, elma ve karpuz-çilek aromalı soda seçenekleri.</p>
+              </div>
+            </div>
+
+            <div class="menu-card reveal" data-category="soguk" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1622543925917-763c34d1a86e?w=200&auto=format&fit=crop&q=80" alt="Red Bull" loading="lazy" />
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <span class="item-name">Red Bull</span>
+                  <span class="item-price">₺120</span>
+                </div>
+                <p class="item-desc">Orijinal enerji içeceği.</p>
+              </div>
+            </div>
+
+            <div class="menu-card reveal" data-category="soguk" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1622543925917-763c34d1a86e?w=200&auto=format&fit=crop&q=80" alt="Black Bruin" loading="lazy" />
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <span class="item-name">Black Bruin</span>
+                  <span class="item-price">₺80</span>
+                </div>
+                <p class="item-desc">Soğuk enerji içeceği.</p>
+              </div>
+            </div>
+
+            <div class="menu-card reveal" data-category="soguk" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1613478223719-2ab802602423?w=200&auto=format&fit=crop&q=80" alt="Meyve Suyu" loading="lazy" />
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <span class="item-name">Meyve Suyu</span>
+                  <span class="item-price">₺70</span>
+                </div>
+                <p class="item-desc">Şeftali, vişne ve karışık meyve suyu seçenekleri.</p>
+              </div>
+            </div>
+
+            <div class="menu-card reveal" data-category="soguk" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1548839140-29a749e1bc4e?w=200&auto=format&fit=crop&q=80" alt="Su" loading="lazy" />
               <div class="menu-card-body">
                 <div class="menu-card-top">
                   <span class="item-name">Su</span>
                   <span class="item-price">₺20</span>
                 </div>
-                <p class="item-desc">Doğal kaynak suyu.</p>
+                <p class="item-desc">Şişe doğal kaynak suyu.</p>
               </div>
             </div>
           </div><!-- /.menu-grid -->
@@ -342,405 +359,427 @@
         <!-- ── FOOD PANEL ── -->
         <div class="tab-panel" id="panel-food" role="tabpanel" aria-labelledby="tab-food">
           <div class="sub-tabs" role="tablist" aria-label="Yiyecek Alt Kategorileri">
-            <button class="sub-tab active" data-sub="pastalar">🍰 Pastalar</button>
-            <button class="sub-tab" data-sub="tostlar">🥪 Tostlar</button>
-            <button class="sub-tab" data-sub="evyemekleri">🍽️ Ev Yemekleri</button>
-            <button class="sub-tab" data-sub="diger">🍳 Diğer</button>
-            <button class="sub-tab" data-sub="menemenler">🥚 Menemenler</button>
-            <button class="sub-tab" data-sub="yumurtalar">🍳 Yumurtalar</button>
-            <button class="sub-tab" data-sub="donerler">🌯 Dönerler</button>
+            <button class="sub-tab active" data-sub="pastalar">Pastalar</button>
+            <button class="sub-tab" data-sub="evyemekleri">Ev Yemekleri</button>
+            <button class="sub-tab" data-sub="tostlar">Tostlar</button>
+            <button class="sub-tab" data-sub="menemenler">Menemenler</button>
+            <button class="sub-tab" data-sub="yumurtalar">Yumurtalar</button>
+            <button class="sub-tab" data-sub="donerler">Döner &amp; Fast Food</button>
+            <button class="sub-tab" data-sub="diger">Diğer Lezzetler</button>
           </div>
 
           <div class="menu-grid">
             <!-- PASTALAR -->
             <div class="menu-card reveal" data-category="pastalar">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=200&auto=format&fit=crop&q=80" alt="Cheesecake" loading="lazy" />
               <div class="menu-card-body">
                 <div class="menu-card-top">
                   <span class="item-name">Cheesecake</span>
                   <span class="item-price">₺150</span>
                 </div>
-                <p class="item-desc">Limonlu ve Frambuazlı seçenekleriyle.</p>
-                <div class="item-tags"><span class="tag tag-popular">Popüler</span></div>
+                <p class="item-desc">Limonlu ve Frambuazlı seçenekleriyle fırınlanmış kıvam.</p>
               </div>
             </div>
 
             <div class="menu-card reveal" data-category="pastalar">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=200&auto=format&fit=crop&q=80" alt="Tiramisu" loading="lazy" />
               <div class="menu-card-body">
                 <div class="menu-card-top">
                   <span class="item-name">Tiramisu</span>
                   <span class="item-price">₺160</span>
                 </div>
-                <p class="item-desc">İtalyan klasiği, espresso ve maskarpone kreması.</p>
-                <div class="item-tags"><span class="tag tag-popular">Popüler</span></div>
+                <p class="item-desc">İtalyan klasiği, espresso ve maskarpone kreması ile.</p>
               </div>
             </div>
 
             <div class="menu-card reveal" data-category="pastalar">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <span class="item-name">Mozaik Pasta</span>
-                  <span class="item-price">₺160</span>
-                </div>
-                <p class="item-desc">Klasik bisküvili mozaik pasta.</p>
-              </div>
-            </div>
-
-            <div class="menu-card reveal" data-category="pastalar">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <span class="item-name">Orman Meyveli Pasta</span>
-                  <span class="item-price">₺180</span>
-                </div>
-                <p class="item-desc">Taze orman meyveleriyle hazırlanan özel pasta.</p>
-              </div>
-            </div>
-
-            <div class="menu-card reveal" data-category="pastalar">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <span class="item-name">Yaban Mersinli Pasta</span>
-                  <span class="item-price">₺180</span>
-                </div>
-                <p class="item-desc">Yaban mersini dolgulu, hafif ve ferah.</p>
-              </div>
-            </div>
-
-            <div class="menu-card reveal" data-category="pastalar">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <span class="item-name">Fıstık Dünyası</span>
-                  <span class="item-price">₺200</span>
-                </div>
-                <p class="item-desc">Antep fıstığı dolgulu özel pasta.</p>
-                <div class="item-tags"><span class="tag tag-popular">Popüler</span></div>
-              </div>
-            </div>
-
-            <div class="menu-card reveal" data-category="pastalar">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <span class="item-name">Dark Profiterollü Pasta</span>
-                  <span class="item-price">₺200</span>
-                </div>
-                <p class="item-desc">Bitter çikolata kaplı profiterol süslemeli.</p>
-              </div>
-            </div>
-
-            <div class="menu-card reveal" data-category="pastalar">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=200&auto=format&fit=crop&q=80" alt="Sufle" loading="lazy" />
               <div class="menu-card-body">
                 <div class="menu-card-top">
                   <span class="item-name">Sufle</span>
                   <span class="item-price">₺200</span>
                 </div>
-                <p class="item-desc">Sıcak servis, içinde akan çikolata kalbi.</p>
-                <div class="item-tags"><span class="tag tag-popular">Popüler</span></div>
+                <p class="item-desc">Fırından sıcak servis, akışkan bitter çikolata dolgulu.</p>
               </div>
             </div>
 
             <div class="menu-card reveal" data-category="pastalar">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=200&auto=format&fit=crop&q=80" alt="Fıstık Dünyası" loading="lazy" />
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <span class="item-name">Fıstık Dünyası</span>
+                  <span class="item-price">₺200</span>
+                </div>
+                <p class="item-desc">Bol Antep fıstığı dolgulu özel krema katmanları.</p>
+              </div>
+            </div>
+
+            <div class="menu-card reveal" data-category="pastalar">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1587314168485-3236d6710814?w=200&auto=format&fit=crop&q=80" alt="Dark Profiterollü Pasta" loading="lazy" />
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <span class="item-name">Dark Profiterollü Pasta</span>
+                  <span class="item-price">₺200</span>
+                </div>
+                <p class="item-desc">Bitter çikolata soslu profiterol topları ile süslenmiş pasta.</p>
+              </div>
+            </div>
+
+            <div class="menu-card reveal" data-category="pastalar">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=200&auto=format&fit=crop&q=80" alt="Orman Meyveli Pasta" loading="lazy" />
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <span class="item-name">Orman Meyveli Pasta</span>
+                  <span class="item-price">₺180</span>
+                </div>
+                <p class="item-desc">Taze orman meyveleri ve hafif krema dolgusu.</p>
+              </div>
+            </div>
+
+            <div class="menu-card reveal" data-category="pastalar">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=200&auto=format&fit=crop&q=80" alt="Yaban Mersinli Pasta" loading="lazy" />
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <span class="item-name">Yaban Mersinli Pasta</span>
+                  <span class="item-price">₺180</span>
+                </div>
+                <p class="item-desc">Taze yaban mersini taneleriyle hafif ve ferah lezzet.</p>
+              </div>
+            </div>
+
+            <div class="menu-card reveal" data-category="pastalar">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=200&auto=format&fit=crop&q=80" alt="Mozaik Pasta" loading="lazy" />
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <span class="item-name">Mozaik Pasta</span>
+                  <span class="item-price">₺160</span>
+                </div>
+                <p class="item-desc">Geleneksel bisküvili ve yoğun kakaolu ev yapımı pasta.</p>
+              </div>
+            </div>
+
+            <div class="menu-card reveal" data-category="pastalar">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=200&auto=format&fit=crop&q=80" alt="Albenili Fıstıklı Doro" loading="lazy" />
               <div class="menu-card-body">
                 <div class="menu-card-top">
                   <span class="item-name">Albenili Fıstıklı Doro</span>
                   <span class="item-price">₺200</span>
                 </div>
-                <p class="item-desc">Fıstıklı özel Doro pasta.</p>
-              </div>
-            </div>
-
-            <!-- TOSTLAR -->
-            <div class="menu-card reveal" data-category="tostlar" style="display:none">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <span class="item-name">Tam Kaşarlı Tost</span>
-                  <span class="item-price">₺150</span>
-                </div>
-                <p class="item-desc">Bol kaşar peynirli, tam ekmek arası sıcak tost.</p>
-              </div>
-            </div>
-
-            <div class="menu-card reveal" data-category="tostlar" style="display:none">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <span class="item-name">Tam Sucuklu Tost</span>
-                  <span class="item-price">₺160</span>
-                </div>
-                <p class="item-desc">Sucuk ve kaşar, sıcak preslenmiş tam ekmek.</p>
-                <div class="item-tags"><span class="tag tag-popular">Popüler</span></div>
-              </div>
-            </div>
-
-            <div class="menu-card reveal" data-category="tostlar" style="display:none">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <span class="item-name">Tam Karışık Tost</span>
-                  <span class="item-price">₺200</span>
-                </div>
-                <p class="item-desc">Sucuk, kaşar ve mevsim malzemeleriyle dolu.</p>
-              </div>
-            </div>
-
-            <div class="menu-card reveal" data-category="tostlar" style="display:none">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <span class="item-name">Tam Kavurmalı Kaşarlı Tost</span>
-                  <span class="item-price">₺210</span>
-                </div>
-                <p class="item-desc">Kavurma ve erimiş kaşarla hazırlanan özel tost.</p>
-                <div class="item-tags"><span class="tag tag-popular">Popüler</span></div>
+                <p class="item-desc">Fıstıklı ve karamelli özel Doro tarifi.</p>
               </div>
             </div>
 
             <!-- EV YEMEKLERİ -->
             <div class="menu-card reveal" data-category="evyemekleri" style="display:none">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <span class="item-name">Mantı</span>
-                  <span class="item-price">₺200</span>
-                </div>
-                <p class="item-desc">El açması ev mantısı, yoğurt ve tereyağlı sos ile.</p>
-                <div class="item-tags"><span class="tag tag-popular">Popüler</span></div>
-              </div>
-            </div>
-
-            <div class="menu-card reveal" data-category="evyemekleri" style="display:none">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <span class="item-name">Sarma Tabağı</span>
-                  <span class="item-price">₺200</span>
-                </div>
-                <p class="item-desc">16 adet porsiyon, zeytinyağlı yaprak sarma.</p>
-              </div>
-            </div>
-
-            <div class="menu-card reveal" data-category="evyemekleri" style="display:none">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <span class="item-name">Peynirli Tepsi Böreği</span>
-                  <span class="item-price">₺70</span>
-                </div>
-                <p class="item-desc">Adet fiyatıdır. Taze pişen peynirli börek.</p>
-              </div>
-            </div>
-
-            <div class="menu-card reveal" data-category="evyemekleri" style="display:none">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <span class="item-name">Patatesli Gül Börek</span>
-                  <span class="item-price">₺80</span>
-                </div>
-                <p class="item-desc">Adet fiyatıdır. Patates dolgulu el açması gül börek.</p>
-              </div>
-            </div>
-
-            <div class="menu-card reveal" data-category="evyemekleri" style="display:none">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <span class="item-name">İçli Köfte</span>
-                  <span class="item-price">₺70</span>
-                </div>
-                <p class="item-desc">Adet fiyatıdır. Kıymalı dolgu, bulgur kabuğu.</p>
-                <div class="item-tags"><span class="tag tag-popular">Popüler</span></div>
-              </div>
-            </div>
-
-            <div class="menu-card reveal" data-category="evyemekleri" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=200&auto=format&fit=crop&q=80" alt="Yöresel Lezzet Tabağı" loading="lazy" />
               <div class="menu-card-body">
                 <div class="menu-card-top">
                   <span class="item-name">Yöresel Lezzet Tabağı</span>
                   <span class="item-price">₺300</span>
                 </div>
                 <p class="item-desc">1 İçli Köfte, 8 Yaprak Sarma, Mantı ve 1 Börek bir arada.</p>
-                <div class="item-tags"><span class="tag tag-popular">Popüler</span></div>
               </div>
             </div>
 
-            <!-- DİĞER (BAŞKA NE VAR?) -->
-            <div class="menu-card reveal" data-category="diger" style="display:none">
+            <div class="menu-card reveal" data-category="evyemekleri" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=200&auto=format&fit=crop&q=80" alt="Mantı" loading="lazy" />
               <div class="menu-card-body">
                 <div class="menu-card-top">
-                  <span class="item-name">Kahvaltı Tabağı</span>
+                  <span class="item-name">Mantı</span>
                   <span class="item-price">₺200</span>
                 </div>
-                <p class="item-desc">Beyaz &amp; kaşar peyniri, yeşil &amp; siyah zeytin, reçel, bal, tereyağ, domates, haşlanmış yumurta.</p>
-                <div class="item-tags"><span class="tag tag-popular">Popüler</span></div>
+                <p class="item-desc">El açması ev mantısı, sarımsaklı yoğurt ve tereyağlı sos ile.</p>
               </div>
             </div>
 
-            <div class="menu-card reveal" data-category="diger" style="display:none">
+            <div class="menu-card reveal" data-category="evyemekleri" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1541518763669-27fef04b14ea?w=200&auto=format&fit=crop&q=80" alt="Sarma Tabağı" loading="lazy" />
               <div class="menu-card-body">
                 <div class="menu-card-top">
-                  <span class="item-name">Atıştırmalık Tabağı</span>
+                  <span class="item-name">Sarma Tabağı</span>
                   <span class="item-price">₺200</span>
                 </div>
-                <p class="item-desc">Patates, sosis, nugget ve soğan halkası ile.</p>
+                <p class="item-desc">16 adet zeytinyağlı taze asma yaprağı sarması.</p>
               </div>
             </div>
 
-            <div class="menu-card reveal" data-category="diger" style="display:none">
+            <div class="menu-card reveal" data-category="evyemekleri" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1544025162-d76694265947?w=200&auto=format&fit=crop&q=80" alt="İçli Köfte" loading="lazy" />
               <div class="menu-card-body">
                 <div class="menu-card-top">
-                  <span class="item-name">Patates Kızartması</span>
-                  <span class="item-price">₺120</span>
+                  <span class="item-name">İçli Köfte</span>
+                  <span class="item-price">₺70</span>
                 </div>
-                <p class="item-desc">Çıtır çıtır taze patates kızartması.</p>
+                <p class="item-desc">Adet fiyatıdır. İnce bulgur kabuğu, kıymalı ve cevizli iç harç.</p>
               </div>
             </div>
 
-            <div class="menu-card reveal" data-category="diger" style="display:none">
+            <div class="menu-card reveal" data-category="evyemekleri" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?w=200&auto=format&fit=crop&q=80" alt="Patatesli Gül Börek" loading="lazy" />
               <div class="menu-card-body">
                 <div class="menu-card-top">
-                  <span class="item-name">Köfte Tabağı</span>
-                  <span class="item-price">₺260</span>
+                  <span class="item-name">Patatesli Gül Börek</span>
+                  <span class="item-price">₺80</span>
                 </div>
-                <p class="item-desc">4 Adet Sivas Köftesi, patates kızartması, isteğe bağlı domates, yeşil biber ve soğan ile.</p>
-                <div class="item-tags"><span class="tag tag-popular">Popüler</span></div>
+                <p class="item-desc">Adet fiyatıdır. El açması çıtır yufka ve baharatlı patates harcı.</p>
               </div>
             </div>
 
-            <div class="menu-card reveal" data-category="diger" style="display:none">
+            <div class="menu-card reveal" data-category="evyemekleri" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?w=200&auto=format&fit=crop&q=80" alt="Peynirli Tepsi Böreği" loading="lazy" />
               <div class="menu-card-body">
                 <div class="menu-card-top">
-                  <span class="item-name">Köfte Ekmek</span>
-                  <span class="item-price">₺230</span>
+                  <span class="item-name">Peynirli Tepsi Böreği</span>
+                  <span class="item-price">₺70</span>
                 </div>
-                <p class="item-desc">3 Adet Sivas Köftesi, domates, yeşil biber ve soğan ile ekmek arası.</p>
+                <p class="item-desc">Adet fiyatıdır. Fırından taze çıkan bol peynirli tepsi böreği.</p>
               </div>
             </div>
 
-            <div class="menu-card reveal" data-category="diger" style="display:none">
+            <!-- TOSTLAR -->
+            <div class="menu-card reveal" data-category="tostlar" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=200&auto=format&fit=crop&q=80" alt="Tam Kavurmalı Kaşarlı Tost" loading="lazy" />
               <div class="menu-card-body">
                 <div class="menu-card-top">
-                  <span class="item-name">Tavuk Burger</span>
-                  <span class="item-price">₺220</span>
+                  <span class="item-name">Tam Kavurmalı Kaşarlı Tost</span>
+                  <span class="item-price">₺210</span>
                 </div>
-                <p class="item-desc">Patates kızartması ile birlikte servis edilir.</p>
+                <p class="item-desc">Özel et kavurma ve erimiş kaşar peyniriyle sıcak preslenmiş tam ekmek.</p>
+              </div>
+            </div>
+
+            <div class="menu-card reveal" data-category="tostlar" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=200&auto=format&fit=crop&q=80" alt="Tam Karışık Tost" loading="lazy" />
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <span class="item-name">Tam Karışık Tost</span>
+                  <span class="item-price">₺200</span>
+                </div>
+                <p class="item-desc">Sucuk, kaşar peyniri ve baharatlı sos ile tam ekmek doyurucu tost.</p>
+              </div>
+            </div>
+
+            <div class="menu-card reveal" data-category="tostlar" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=200&auto=format&fit=crop&q=80" alt="Tam Sucuklu Tost" loading="lazy" />
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <span class="item-name">Tam Sucuklu Tost</span>
+                  <span class="item-price">₺160</span>
+                </div>
+                <p class="item-desc">Baharatlı sucuk ve erimiş kaşar peynirli tam ekmek tost.</p>
+              </div>
+            </div>
+
+            <div class="menu-card reveal" data-category="tostlar" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=200&auto=format&fit=crop&q=80" alt="Tam Kaşarlı Tost" loading="lazy" />
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <span class="item-name">Tam Kaşarlı Tost</span>
+                  <span class="item-price">₺150</span>
+                </div>
+                <p class="item-desc">Bol erimiş kaşar peyniri ve tereyağı ile tam ekmek tost.</p>
               </div>
             </div>
 
             <!-- MENEMENLER -->
             <div class="menu-card reveal" data-category="menemenler" style="display:none">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <span class="item-name">Sade Menemen</span>
-                  <span class="item-price">₺140</span>
-                </div>
-                <p class="item-desc">Domates, biber ve yumurta ile klasik menemen.</p>
-              </div>
-            </div>
-
-            <div class="menu-card reveal" data-category="menemenler" style="display:none">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <span class="item-name">Kaşarlı Menemen</span>
-                  <span class="item-price">₺150</span>
-                </div>
-                <p class="item-desc">Üzerine erimiş kaşar peyniri ile.</p>
-              </div>
-            </div>
-
-            <div class="menu-card reveal" data-category="menemenler" style="display:none">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <span class="item-name">Sucuklu Menemen</span>
-                  <span class="item-price">₺160</span>
-                </div>
-                <p class="item-desc">Sucuklu, lezzetli ve doyurucu.</p>
-                <div class="item-tags"><span class="tag tag-popular">Popüler</span></div>
-              </div>
-            </div>
-
-            <div class="menu-card reveal" data-category="menemenler" style="display:none">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <span class="item-name">Karışık Menemen</span>
-                  <span class="item-price">₺190</span>
-                </div>
-                <p class="item-desc">Sucuk ve kaşar peyniri ile birlikte.</p>
-                <div class="item-tags"><span class="tag tag-popular">Popüler</span></div>
-              </div>
-            </div>
-
-            <div class="menu-card reveal" data-category="menemenler" style="display:none">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <span class="item-name">Kıymalı Menemen</span>
-                  <span class="item-price">₺200</span>
-                </div>
-                <p class="item-desc">Kıyma ile zenginleştirilmiş menemen.</p>
-              </div>
-            </div>
-
-            <div class="menu-card reveal" data-category="menemenler" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1525351484163-7529414344d8?w=200&auto=format&fit=crop&q=80" alt="Kavurmalı Menemen" loading="lazy" />
               <div class="menu-card-body">
                 <div class="menu-card-top">
                   <span class="item-name">Kavurmalı Menemen</span>
                   <span class="item-price">₺210</span>
                 </div>
-                <p class="item-desc">Et kavurması ile hazırlanan doyurucu menemen.</p>
+                <p class="item-desc">Özel et kavurma, domates, yeşil biber ve sahanda yumurta.</p>
+              </div>
+            </div>
+
+            <div class="menu-card reveal" data-category="menemenler" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1525351484163-7529414344d8?w=200&auto=format&fit=crop&q=80" alt="Kıymalı Menemen" loading="lazy" />
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <span class="item-name">Kıymalı Menemen</span>
+                  <span class="item-price">₺200</span>
+                </div>
+                <p class="item-desc">Kavrulmuş kıyma, domates, taze biber ve yumurta.</p>
+              </div>
+            </div>
+
+            <div class="menu-card reveal" data-category="menemenler" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1525351484163-7529414344d8?w=200&auto=format&fit=crop&q=80" alt="Karışık Menemen" loading="lazy" />
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <span class="item-name">Karışık Menemen</span>
+                  <span class="item-price">₺190</span>
+                </div>
+                <p class="item-desc">Sucuk ve erimiş kaşar peyniri eşliğinde tam kıvamında menemen.</p>
+              </div>
+            </div>
+
+            <div class="menu-card reveal" data-category="menemenler" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1525351484163-7529414344d8?w=200&auto=format&fit=crop&q=80" alt="Sucuklu Menemen" loading="lazy" />
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <span class="item-name">Sucuklu Menemen</span>
+                  <span class="item-price">₺160</span>
+                </div>
+                <p class="item-desc">Baharatlı sucuk dilimleri ve taze sebzeler ile hazırlanır.</p>
+              </div>
+            </div>
+
+            <div class="menu-card reveal" data-category="menemenler" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1525351484163-7529414344d8?w=200&auto=format&fit=crop&q=80" alt="Kaşarlı Menemen" loading="lazy" />
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <span class="item-name">Kaşarlı Menemen</span>
+                  <span class="item-price">₺150</span>
+                </div>
+                <p class="item-desc">Üzerine bol erimiş taze kaşar peyniri ilavesi ile.</p>
+              </div>
+            </div>
+
+            <div class="menu-card reveal" data-category="menemenler" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1525351484163-7529414344d8?w=200&auto=format&fit=crop&q=80" alt="Sade Menemen" loading="lazy" />
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <span class="item-name">Sade Menemen</span>
+                  <span class="item-price">₺140</span>
+                </div>
+                <p class="item-desc">Taze domates, biber ve yumurta ile pişirilen klasik menemen.</p>
               </div>
             </div>
 
             <!-- YUMURTALAR -->
             <div class="menu-card reveal" data-category="yumurtalar" style="display:none">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <span class="item-name">Sade Yumurta</span>
-                  <span class="item-price">₺100</span>
-                </div>
-                <p class="item-desc">Sahanda, haşlanmış veya omlet.</p>
-              </div>
-            </div>
-
-            <div class="menu-card reveal" data-category="yumurtalar" style="display:none">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <span class="item-name">Kaşarlı Yumurta</span>
-                  <span class="item-price">₺110</span>
-                </div>
-                <p class="item-desc">Erimiş kaşar peyniri ile.</p>
-              </div>
-            </div>
-
-            <div class="menu-card reveal" data-category="yumurtalar" style="display:none">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <span class="item-name">Sucuklu Yumurta</span>
-                  <span class="item-price">₺130</span>
-                </div>
-                <p class="item-desc">Tavada kızartılmış sucuk ile birlikte.</p>
-                <div class="item-tags"><span class="tag tag-popular">Popüler</span></div>
-              </div>
-            </div>
-
-            <div class="menu-card reveal" data-category="yumurtalar" style="display:none">
-              <div class="menu-card-body">
-                <div class="menu-card-top">
-                  <span class="item-name">Kıymalı Yumurta</span>
-                  <span class="item-price">₺160</span>
-                </div>
-                <p class="item-desc">Kıyma ile pişirilmiş doyurucu yumurta.</p>
-              </div>
-            </div>
-
-            <div class="menu-card reveal" data-category="yumurtalar" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1582169296194-e4d644c48063?w=200&auto=format&fit=crop&q=80" alt="Kavurmalı Yumurta" loading="lazy" />
               <div class="menu-card-body">
                 <div class="menu-card-top">
                   <span class="item-name">Kavurmalı Yumurta</span>
                   <span class="item-price">₺180</span>
                 </div>
-                <p class="item-desc">Et kavurması ile hazırlanan özel yumurta.</p>
+                <p class="item-desc">Tereyağında sotelenmiş kavurma üzerine sahanda yumurta.</p>
               </div>
             </div>
 
-            <!-- DÖNERLER -->
+            <div class="menu-card reveal" data-category="yumurtalar" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1582169296194-e4d644c48063?w=200&auto=format&fit=crop&q=80" alt="Kıymalı Yumurta" loading="lazy" />
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <span class="item-name">Kıymalı Yumurta</span>
+                  <span class="item-price">₺160</span>
+                </div>
+                <p class="item-desc">Baharatlı kıyma harcı ile sahanda pişirilen yumurta.</p>
+              </div>
+            </div>
+
+            <div class="menu-card reveal" data-category="yumurtalar" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1582169296194-e4d644c48063?w=200&auto=format&fit=crop&q=80" alt="Sucuklu Yumurta" loading="lazy" />
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <span class="item-name">Sucuklu Yumurta</span>
+                  <span class="item-price">₺130</span>
+                </div>
+                <p class="item-desc">Tavada kızartılmış kasap sucuğu ve sahanda yumurta.</p>
+              </div>
+            </div>
+
+            <div class="menu-card reveal" data-category="yumurtalar" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1582169296194-e4d644c48063?w=200&auto=format&fit=crop&q=80" alt="Kaşarlı Yumurta" loading="lazy" />
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <span class="item-name">Kaşarlı Yumurta</span>
+                  <span class="item-price">₺110</span>
+                </div>
+                <p class="item-desc">Erimiş kaşar peyniri eşliğinde sahanda yumurta veya omlet.</p>
+              </div>
+            </div>
+
+            <div class="menu-card reveal" data-category="yumurtalar" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1582169296194-e4d644c48063?w=200&auto=format&fit=crop&q=80" alt="Sade Yumurta" loading="lazy" />
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <span class="item-name">Sade Yumurta</span>
+                  <span class="item-price">₺100</span>
+                </div>
+                <p class="item-desc">Sahanda tereyağlı, haşlanmış veya sade omlet seçeneği.</p>
+              </div>
+            </div>
+
+            <!-- DÖNER & FAST FOOD -->
             <div class="menu-card reveal" data-category="donerler" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=200&auto=format&fit=crop&q=80" alt="Tavuk Döner Menü" loading="lazy" />
               <div class="menu-card-body">
                 <div class="menu-card-top">
                   <span class="item-name">Tavuk Menü</span>
                   <span class="item-price">₺230</span>
                 </div>
                 <p class="item-desc">Sandviç ekmeğinde tavuk döner, yanında patates kızartması ve ayran.</p>
-                <div class="item-tags"><span class="tag tag-popular">Popüler</span></div>
+              </div>
+            </div>
+
+            <div class="menu-card reveal" data-category="donerler" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1529042410759-befb1204b468?w=200&auto=format&fit=crop&q=80" alt="Köfte Tabağı" loading="lazy" />
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <span class="item-name">Köfte Tabağı</span>
+                  <span class="item-price">₺260</span>
+                </div>
+                <p class="item-desc">4 adet Sivas köftesi, patates kızartması, ızgara domates ve biber ile.</p>
+              </div>
+            </div>
+
+            <div class="menu-card reveal" data-category="donerler" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1529042410759-befb1204b468?w=200&auto=format&fit=crop&q=80" alt="Köfte Ekmek" loading="lazy" />
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <span class="item-name">Köfte Ekmek</span>
+                  <span class="item-price">₺230</span>
+                </div>
+                <p class="item-desc">3 adet Sivas köftesi, domates, yeşil biber ve soğan ile ekmek arası.</p>
+              </div>
+            </div>
+
+            <div class="menu-card reveal" data-category="donerler" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=200&auto=format&fit=crop&q=80" alt="Tavuk Burger" loading="lazy" />
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <span class="item-name">Tavuk Burger</span>
+                  <span class="item-price">₺220</span>
+                </div>
+                <p class="item-desc">Özel soslu çıtır tavuk fileto burger, yanında patates kızartması ile.</p>
+              </div>
+            </div>
+
+            <!-- DİĞER LEZZETLER -->
+            <div class="menu-card reveal" data-category="diger" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=200&auto=format&fit=crop&q=80" alt="Kahvaltı Tabağı" loading="lazy" />
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <span class="item-name">Kahvaltı Tabağı</span>
+                  <span class="item-price">₺200</span>
+                </div>
+                <p class="item-desc">Beyaz ve kaşar peyniri, zeytin, reçel, bal, tereyağı, domates ve yumurta.</p>
+              </div>
+            </div>
+
+            <div class="menu-card reveal" data-category="diger" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1561758033-d89a9ad46330?w=200&auto=format&fit=crop&q=80" alt="Atıştırmalık Tabağı" loading="lazy" />
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <span class="item-name">Atıştırmalık Tabağı</span>
+                  <span class="item-price">₺200</span>
+                </div>
+                <p class="item-desc">Çıtır patates kızartması, sosis, çıtır nugget ve soğan halkası sepeti.</p>
+              </div>
+            </div>
+
+            <div class="menu-card reveal" data-category="diger" style="display:none">
+              <img class="menu-card-thumb" src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=200&auto=format&fit=crop&q=80" alt="Patates Kızartması" loading="lazy" />
+              <div class="menu-card-body">
+                <div class="menu-card-top">
+                  <span class="item-name">Patates Kızartması</span>
+                  <span class="item-price">₺120</span>
+                </div>
+                <p class="item-desc">Özel baharat harmanlı çıtır patates kızartması tabağı.</p>
               </div>
             </div>
           </div><!-- /.menu-grid -->
