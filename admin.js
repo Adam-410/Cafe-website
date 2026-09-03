@@ -85,19 +85,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  authForm.addEventListener('submit', (e) => {
+  authForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const enteredPin = authPinInput.value.trim();
+    const submitBtn = authForm.querySelector('button[type="submit"]');
 
-    if (CMS.verifyAdminPin(enteredPin)) {
-      authError.textContent = '';
-      CMS.setAdminSession(true);
-      checkAuth();
-      showToast('Hoş geldiniz! Yönetim paneli açıldı.', 'success');
-    } else {
-      authError.textContent = 'Hatalı PIN kodu! Tekrar deneyin.';
-      authPinInput.value = '';
-      authPinInput.focus();
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Giriş Yapılıyor...';
+    }
+
+    try {
+      const isValid = await CMS.verifyAdminPin(enteredPin);
+      if (isValid) {
+        authError.textContent = '';
+        CMS.setAdminSession(true);
+        checkAuth();
+        showToast('Hoş geldiniz! Yönetim paneli açıldı.', 'success');
+      } else {
+        authError.textContent = 'Hatalı PIN kodu! Tekrar deneyin.';
+        authPinInput.value = '';
+        authPinInput.focus();
+      }
+    } catch (err) {
+      authError.textContent = 'Doğrulama hatası oluştu.';
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Giriş Yap';
+      }
     }
   });
 
@@ -765,22 +781,29 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnTriggerReset = document.getElementById('btn-trigger-reset');
   const btnConfirmResetAction = document.getElementById('btn-confirm-reset-action');
 
-  formChangePin.addEventListener('submit', (e) => {
+  formChangePin.addEventListener('submit', async (e) => {
     e.preventDefault();
-    if (!CMS.verifyAdminPin(currentPin.value.trim())) {
-      showToast('Mevcut PIN hatalı!', 'error');
-      return;
-    }
-    if (newPin.value.trim() !== confirmNewPin.value.trim()) {
-      showToast('Yeni PIN tekrarları eşleşmiyor!', 'error');
-      return;
-    }
+    const submitBtn = formChangePin.querySelector('button[type="submit"]');
+
+    if (submitBtn) submitBtn.disabled = true;
+
     try {
-      CMS.setAdminPin(newPin.value.trim());
+      const isValidCurrent = await CMS.verifyAdminPin(currentPin.value.trim());
+      if (!isValidCurrent) {
+        showToast('Mevcut PIN hatalı!', 'error');
+        return;
+      }
+      if (newPin.value.trim() !== confirmNewPin.value.trim()) {
+        showToast('Yeni PIN tekrarları eşleşmiyor!', 'error');
+        return;
+      }
+      await CMS.setAdminPin(newPin.value.trim());
       formChangePin.reset();
-      showToast('Yönetici PIN kodu başarıyla güncellendi!', 'success');
+      showToast('Yönetici PIN kodu şifreli olarak başarıyla güncellendi!', 'success');
     } catch (err) {
       showToast(err.message, 'error');
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
     }
   });
 

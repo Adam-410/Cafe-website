@@ -673,7 +673,8 @@ const DEFAULT_SITE_DATA = {
     facebook: 'https://www.facebook.com/p/Masals%C4%B1-Cafe-100088958484685/'
   },
   settings: {
-    adminPin: '1234'
+    adminPinHash: '6fc48ca9755a8a94a1c0428e947a03618e379033a73e72b2c8a0b5718766fad0',
+    adminPinSalt: '095bf32d844906e8fc0a5cbde81f3e8e'
   }
 };
 
@@ -710,6 +711,14 @@ function getSiteData() {
       return item;
     });
 
+    // Merge settings and upgrade legacy plaintext adminPin to encrypted PBKDF2 hash
+    const settings = { ...DEFAULT_SITE_DATA.settings, ...(parsed.settings || {}) };
+    if (settings.adminPin) {
+      delete settings.adminPin;
+      settings.adminPinHash = DEFAULT_SITE_DATA.settings.adminPinHash;
+      settings.adminPinSalt = DEFAULT_SITE_DATA.settings.adminPinSalt;
+    }
+
     // Merge any missing keys from DEFAULT_SITE_DATA safely
     return {
       ...DEFAULT_SITE_DATA,
@@ -717,7 +726,7 @@ function getSiteData() {
       hero: { ...DEFAULT_SITE_DATA.hero, ...(parsed.hero || {}) },
       about: { ...DEFAULT_SITE_DATA.about, ...(parsed.about || {}) },
       contact: { ...DEFAULT_SITE_DATA.contact, ...(parsed.contact || {}) },
-      settings: { ...DEFAULT_SITE_DATA.settings, ...(parsed.settings || {}) },
+      settings: settings,
       menu: Array.isArray(parsed.menu) ? parsed.menu : DEFAULT_SITE_DATA.menu,
       gallery: galleryList
     };
@@ -769,27 +778,90 @@ function exportSiteData() {
 }
 
 /**
- * Verifies entered admin PIN.
+ * Derives a PBKDF2-HMAC-SHA256 hex hash from a PIN and salt using Web Crypto API.
  * @param {string} pin 
- * @returns {boolean}
+ * @param {string} saltHex 
+ * @returns {Promise<string>} Hex-encoded 256-bit hash
  */
-function verifyAdminPin(pin) {
-  const data = getSiteData();
-  const validPin = data.settings && data.settings.adminPin ? data.settings.adminPin : '1234';
-  return String(pin).trim() === String(validPin).trim();
+async function hashPin(pin, saltHex) {
+  const enc = new TextEncoder();
+  const keyMaterial = await window.crypto.subtle.importKey(
+    'raw',
+    enc.encode(String(pin).trim()),
+    { name: 'PBKDF2' },
+    false,
+    ['deriveBits']
+  );
+  const saltBytes = new Uint8Array(
+    saltHex.match(/.{1,2}/g).map(byte => parseInt(byte, 16))
+  );
+  const derivedBits = await window.crypto.subtle.deriveBits(
+    {
+      name: 'PBKDF2',
+      salt: saltBytes,
+      iterations: 100000,
+      hash: 'SHA-256'
+    },
+    keyMaterial,
+    256
+  );
+  return Array.from(new Uint8Array(derivedBits))
+    .map(b => b.toString(16).padStart(2, '0'))
+    .join('');
 }
 
 /**
- * Updates admin PIN.
- * @param {string} newPin 
+ * Generates a random 16-byte cryptographic salt in hex format.
+ * @returns {string} 32-character hex string
  */
-function setAdminPin(newPin) {
-  if (!newPin || newPin.length < 4) {
+function generateSalt() {
+  const arr = new Uint8Array(16);
+  window.crypto.getRandomValues(arr);
+  return Array.from(arr)
+    .map(b => b.toString(16).padStart(2, '0'))
+    .join('');
+}
+
+/**
+ * Verifies entered admin PIN against the stored PBKDF2 cryptographic hash.
+ * @param {string} pin 
+ * @returns {Promise<boolean>}
+ */
+async function verifyAdminPin(pin) {
+  try {
+    if (!pin) return false;
+    const data = getSiteData();
+    const settings = data.settings || {};
+    const targetHash = settings.adminPinHash || DEFAULT_SITE_DATA.settings.adminPinHash;
+    const targetSalt = settings.adminPinSalt || DEFAULT_SITE_DATA.settings.adminPinSalt;
+
+    const computedHash = await hashPin(pin, targetSalt);
+    return computedHash === targetHash;
+  } catch (err) {
+    console.error('PIN verification error:', err);
+    return false;
+  }
+}
+
+/**
+ * Updates admin PIN securely by generating a new salt and PBKDF2 hash.
+ * Plaintext PIN is never stored in memory, disk, or localStorage.
+ * @param {string} newPin 
+ * @returns {Promise<void>}
+ */
+async function setAdminPin(newPin) {
+  if (!newPin || String(newPin).trim().length < 4) {
     throw new Error('PIN en az 4 karakter olmalıdır.');
   }
+  const cleanPin = String(newPin).trim();
+  const newSalt = generateSalt();
+  const newHash = await hashPin(cleanPin, newSalt);
+
   const data = getSiteData();
   data.settings = data.settings || {};
-  data.settings.adminPin = String(newPin).trim();
+  delete data.settings.adminPin; // Remove any legacy plaintext PIN
+  data.settings.adminPinHash = newHash;
+  data.settings.adminPinSalt = newSalt;
   saveSiteData(data);
 }
 
