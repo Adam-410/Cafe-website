@@ -134,6 +134,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Tap outside modal (on backdrop) to close
+  document.querySelectorAll('dialog').forEach((dialog) => {
+    dialog.addEventListener('click', (e) => {
+      const rect = dialog.getBoundingClientRect();
+      const isInDialog = (
+        rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
+        rect.left <= e.clientX && e.clientX <= rect.left + rect.width
+      );
+      if (!isInDialog && typeof dialog.close === 'function') {
+        dialog.close();
+      }
+    });
+  });
+
   /* ──────────────── NAVIGATION TABS ──────────────── */
   navButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -155,15 +169,46 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // Close mobile drawer if open
-      dashSidebar.classList.remove('open');
+      closeSidebar();
     });
   });
 
+  const dashSidebarClose = document.getElementById('dash-sidebar-close');
+  const dashSidebarOverlay = document.getElementById('dash-sidebar-overlay');
+
+  function openSidebar() {
+    dashSidebar.classList.add('open');
+    if (dashSidebarOverlay) dashSidebarOverlay.classList.add('active');
+  }
+
+  function closeSidebar() {
+    dashSidebar.classList.remove('open');
+    if (dashSidebarOverlay) dashSidebarOverlay.classList.remove('active');
+  }
+
   if (mobileSidebarToggle) {
     mobileSidebarToggle.addEventListener('click', () => {
-      dashSidebar.classList.toggle('open');
+      if (dashSidebar.classList.contains('open')) {
+        closeSidebar();
+      } else {
+        openSidebar();
+      }
     });
   }
+
+  if (dashSidebarClose) {
+    dashSidebarClose.addEventListener('click', closeSidebar);
+  }
+
+  if (dashSidebarOverlay) {
+    dashSidebarOverlay.addEventListener('click', closeSidebar);
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && dashSidebar.classList.contains('open')) {
+      closeSidebar();
+    }
+  });
 
   /* ──────────────── 1. MENU MANAGEMENT ──────────────── */
   let currentCategoryFilter = 'all';
