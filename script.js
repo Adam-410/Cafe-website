@@ -170,6 +170,9 @@ const prefersReducedMotion = () =>
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 })();
 
+let refreshMenuCategoryFilter = () => {};
+let refreshLightbox = () => {};
+
 /* ──────────────── 6. MENU TABS & SUB-TABS ──────────────── */
 (function initMenuTabs() {
 
@@ -211,39 +214,48 @@ const prefersReducedMotion = () =>
   });
 
   /* ---- Sub-tabs ---- */
-  document.querySelectorAll('.tab-panel').forEach(panel => {
-    const subBtns = panel.querySelectorAll('.sub-tab');
-    const cards   = panel.querySelectorAll('.menu-card');
-    const io      = new IntersectionObserver(
-      (entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } }),
-      { threshold: 0.1 }
-    );
+  refreshMenuCategoryFilter = () => {
+    document.querySelectorAll('.tab-panel').forEach(panel => {
+      const subBtns = panel.querySelectorAll('.sub-tab');
+      const cards   = panel.querySelectorAll('.menu-card');
+      const io      = new IntersectionObserver(
+        (entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } }),
+        { threshold: 0.1 }
+      );
 
-    const showCategory = (category) => {
-      cards.forEach(card => {
-        const match = card.dataset.category === category;
-        card.style.display = match ? '' : 'none';
+      const showCategory = (category) => {
+        cards.forEach(card => {
+          const match = card.dataset.category === category;
+          card.style.display = match ? '' : 'none';
 
-        // Re-trigger reveal animation for newly shown cards
-        if (match && !prefersReducedMotion()) {
-          card.classList.remove('visible');
-          // Small delay so the Observer sees them entering viewport
-          requestAnimationFrame(() => io.observe(card));
-        }
+          // Re-trigger reveal animation for newly shown cards
+          if (match && !prefersReducedMotion()) {
+            card.classList.remove('visible');
+            requestAnimationFrame(() => io.observe(card));
+          } else if (match) {
+            card.classList.add('visible');
+          }
+        });
+      };
+
+      subBtns.forEach(sub => {
+        sub.onclick = () => {
+          subBtns.forEach(s => s.classList.remove('active'));
+          sub.classList.add('active');
+          showCategory(sub.dataset.sub);
+        };
       });
-    };
 
-    subBtns.forEach(sub => {
-      sub.addEventListener('click', () => {
-        subBtns.forEach(s => s.classList.remove('active'));
-        sub.classList.add('active');
-        showCategory(sub.dataset.sub);
-      });
+      // Maintain active sub-tab or default to first
+      const activeSub = panel.querySelector('.sub-tab.active') || subBtns[0];
+      if (activeSub) {
+        activeSub.classList.add('active');
+        showCategory(activeSub.dataset.sub);
+      }
     });
+  };
 
-    // Activate the first sub-tab by default
-    if (subBtns.length > 0) subBtns[0].click();
-  });
+  refreshMenuCategoryFilter();
 })();
 
 /* ──────────────── 7. GALLERY LIGHTBOX ──────────────── */
@@ -253,15 +265,16 @@ const prefersReducedMotion = () =>
   const lbClose    = document.getElementById('lightbox-close');
   const lbPrev     = document.getElementById('lightbox-prev');
   const lbNext     = document.getElementById('lightbox-next');
-  const galleryItems = [...document.querySelectorAll('.gallery-item[data-src]')];
 
-  if (!lightbox || galleryItems.length === 0) return;
+  if (!lightbox) return;
 
   let currentIndex = 0;
+  let galleryItems = [];
 
   const openLightbox = (index) => {
     currentIndex = index;
     const item = galleryItems[index];
+    if (!item) return;
     lbImg.src = item.dataset.src || '';
     lbImg.alt = item.getAttribute('aria-label') || '';
     lightbox.setAttribute('aria-hidden', 'false');
@@ -276,18 +289,23 @@ const prefersReducedMotion = () =>
   };
 
   const showPrev = () => {
+    if (galleryItems.length === 0) return;
     currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
     openLightbox(currentIndex);
   };
 
   const showNext = () => {
+    if (galleryItems.length === 0) return;
     currentIndex = (currentIndex + 1) % galleryItems.length;
     openLightbox(currentIndex);
   };
 
-  galleryItems.forEach((item, index) => {
-    item.addEventListener('click', () => openLightbox(index));
-  });
+  refreshLightbox = () => {
+    galleryItems = [...document.querySelectorAll('.gallery-item[data-src]')];
+    galleryItems.forEach((item, index) => {
+      item.onclick = () => openLightbox(index);
+    });
+  };
 
   lbClose.addEventListener('click', closeLightbox);
   lbPrev.addEventListener('click', showPrev);
@@ -303,6 +321,8 @@ const prefersReducedMotion = () =>
     if (e.key === 'ArrowLeft')  showPrev();
     if (e.key === 'ArrowRight') showNext();
   });
+
+  refreshLightbox();
 })();
 
 /* ──────────────── 8. TESTIMONIALS CAROUSEL ──────────────── */
@@ -460,4 +480,217 @@ const prefersReducedMotion = () =>
   }, { rootMargin: '200px' });
 
   lazyBgs.forEach(el => io.observe(el));
+})();
+
+/* ──────────────── 12. DYNAMIC CMS HYDRATION ──────────────── */
+(function initCMSHydration() {
+  if (!window.MasalsiCMS) return;
+
+  function hydrateFromCMS() {
+    const data = window.MasalsiCMS.getSiteData();
+    if (!data) return;
+
+    /* 1. Hero */
+    if (data.hero) {
+      const bg = document.querySelector('.hero-bg');
+      if (bg && data.hero.bgImage) {
+        bg.style.backgroundImage = `linear-gradient(to bottom, hsl(var(--hue-brand) 20% 19% / 0.62) 0%, hsl(var(--hue-brand) 20% 19% / 0.40) 60%, hsl(var(--hue-brand) 20% 19% / 0.70) 100%), url('${data.hero.bgImage}')`;
+      }
+      const eyebrow = document.querySelector('.hero-eyebrow');
+      if (eyebrow && data.hero.eyebrow) eyebrow.textContent = data.hero.eyebrow;
+
+      const heading = document.querySelector('.hero-heading');
+      if (heading && (data.hero.titleMain || data.hero.titleAccent)) {
+        heading.innerHTML = `${data.hero.titleMain || ''}<br /><em>${data.hero.titleAccent || ''}</em>`;
+      }
+
+      const tagline = document.querySelector('.hero-tagline');
+      if (tagline && data.hero.tagline) tagline.textContent = data.hero.tagline;
+
+      const badge = document.querySelector('.hero-badge .badge-text');
+      if (badge && data.hero.badgeText) badge.textContent = data.hero.badgeText;
+    }
+
+    /* 2. About */
+    if (data.about) {
+      const aboutImg = document.querySelector('.about-image');
+      if (aboutImg && data.about.image) {
+        aboutImg.style.backgroundImage = `url('${data.about.image}')`;
+      }
+      const badgeYear = document.querySelector('.about-image-badge .caveat');
+      if (badgeYear && data.about.badgeYear) badgeYear.textContent = data.about.badgeYear;
+
+      const badgeLabel = document.querySelector('.about-image-badge span:last-child');
+      if (badgeLabel && data.about.badgeLabel) badgeLabel.textContent = data.about.badgeLabel;
+
+      const aboutEyebrow = document.querySelector('.about-text .section-eyebrow');
+      if (aboutEyebrow && data.about.eyebrow) aboutEyebrow.textContent = data.about.eyebrow;
+
+      const aboutHeading = document.querySelector('.about-text h2');
+      if (aboutHeading && (data.about.headingMain || data.about.headingAccent)) {
+        aboutHeading.innerHTML = `${data.about.headingMain || ''}<br /><em>${data.about.headingAccent || ''}</em>`;
+      }
+
+      const aboutParas = document.querySelectorAll('.about-text p');
+      if (data.about.paragraphs && data.about.paragraphs.length > 0) {
+        data.about.paragraphs.forEach((pText, i) => {
+          if (aboutParas[i]) aboutParas[i].textContent = pText;
+        });
+      }
+    }
+
+    /* 3. Menu */
+    if (Array.isArray(data.menu)) {
+      const drinksGrid = document.querySelector('#panel-drinks .menu-grid');
+      const foodGrid = document.querySelector('#panel-food .menu-grid');
+
+      if (drinksGrid) drinksGrid.innerHTML = '';
+      if (foodGrid) foodGrid.innerHTML = '';
+
+      data.menu.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'menu-card reveal';
+        card.dataset.category = item.subCategory;
+        card.innerHTML = `
+          <img class="menu-card-thumb" src="${item.image || 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=200'}" alt="${item.name}" loading="lazy" />
+          <div class="menu-card-body">
+            <div class="menu-card-top">
+              <span class="item-name">${item.name}</span>
+              <span class="item-price">${item.price}</span>
+            </div>
+            <p class="item-desc">${item.desc}</p>
+            ${item.tag ? `<div class="item-tags"><span class="tag tag-new">${item.tag}</span></div>` : ''}
+          </div>
+        `;
+
+        if (item.mainCategory === 'drinks' && drinksGrid) {
+          drinksGrid.appendChild(card);
+        } else if (item.mainCategory === 'food' && foodGrid) {
+          foodGrid.appendChild(card);
+        }
+      });
+
+      if (typeof refreshMenuCategoryFilter === 'function') {
+        refreshMenuCategoryFilter();
+      }
+    }
+
+    /* 4. Gallery */
+    if (Array.isArray(data.gallery)) {
+      const galleryGrid = document.querySelector('.gallery-grid');
+      if (galleryGrid) {
+        galleryGrid.innerHTML = '';
+        data.gallery.forEach(item => {
+          const btn = document.createElement('button');
+          btn.className = `gallery-item reveal visible ${item.span === 'tall' ? 'gallery-tall' : item.span === 'wide' ? 'gallery-wide' : ''}`;
+          btn.dataset.src = item.url;
+          btn.setAttribute('aria-label', item.label || 'Galeri Fotoğrafı');
+          btn.setAttribute('role', 'listitem');
+          btn.style.backgroundImage = `url('${item.url}')`;
+          btn.innerHTML = `<img src="${item.url}" alt="${item.label || 'Galeri Fotoğrafı'}" loading="lazy" referrerpolicy="no-referrer" />`;
+          galleryGrid.appendChild(btn);
+        });
+
+        if (typeof refreshLightbox === 'function') {
+          refreshLightbox();
+        }
+      }
+    }
+
+    /* 5. Contact & Hours */
+    if (data.contact) {
+      const c = data.contact;
+
+      const phoneLink = document.querySelector('.hours-address a[href^="tel:"]');
+      if (phoneLink && c.phone) {
+        phoneLink.href = `tel:${c.phone.replace(/[^0-9+]/g, '')}`;
+        phoneLink.textContent = c.phone;
+      }
+
+      const emailLink = document.querySelector('.hours-address a[href^="mailto:"]');
+      if (emailLink && c.email) {
+        emailLink.href = `mailto:${c.email}`;
+        emailLink.textContent = c.email;
+      }
+
+      const addressP = document.querySelector('.hours-address p:first-child');
+      if (addressP && c.address) {
+        addressP.innerHTML = `📍 ${c.address.replace(/\n/g, '<br />')}`;
+      }
+
+      const hoursTbody = document.querySelector('.hours-table tbody');
+      if (hoursTbody && Array.isArray(c.hours)) {
+        hoursTbody.innerHTML = '';
+        c.hours.forEach(row => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `<td>${row.days}</td><td>${row.time}</td>`;
+          hoursTbody.appendChild(tr);
+        });
+      }
+
+      const directionsBtn = document.querySelector('.hours-text a.btn-primary');
+      if (directionsBtn && c.directionsUrl) {
+        directionsBtn.href = c.directionsUrl;
+      }
+
+      const mapIframe = document.querySelector('.hours-map iframe');
+      if (mapIframe && c.mapEmbedUrl) {
+        mapIframe.src = c.mapEmbedUrl;
+      }
+
+      const instaLink = document.querySelector('.social-icons a[aria-label="Instagram"]');
+      if (instaLink && c.instagram) instaLink.href = c.instagram;
+
+      const fbLink = document.querySelector('.social-icons a[aria-label="Facebook"]');
+      if (fbLink && c.facebook) fbLink.href = c.facebook;
+
+      const drawerInsta = document.querySelector('.drawer-socials a[aria-label="Instagram"]');
+      if (drawerInsta && c.instagram) drawerInsta.href = c.instagram;
+
+      const drawerFb = document.querySelector('.drawer-socials a[aria-label="Facebook"]');
+      if (drawerFb && c.facebook) drawerFb.href = c.facebook;
+    }
+  }
+
+  // Hydrate on load
+  hydrateFromCMS();
+
+  // Real-time synchronization
+  window.addEventListener('masalsi_data_updated', () => hydrateFromCMS());
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'masalsi_cafe_cms_data') {
+      hydrateFromCMS();
+    }
+  });
+
+  /* ──────────────── HIDDEN PRIVATE ADMIN SHORTCUTS ──────────────── */
+  // 1. Keyboard shortcut: Alt + A or Ctrl + Shift + A
+  window.addEventListener('keydown', (e) => {
+    if ((e.altKey && (e.key === 'a' || e.key === 'A')) ||
+        (e.ctrlKey && e.shiftKey && (e.key === 'a' || e.key === 'A'))) {
+      e.preventDefault();
+      window.location.href = 'yonetim-girisi.html';
+    }
+  });
+
+  // 2. Secret click: Triple click footer copyright within 1.5 seconds
+  const footerSecret = document.getElementById('footer-secret-admin');
+  if (footerSecret) {
+    let clickCount = 0;
+    let clickTimer = null;
+    footerSecret.style.cursor = 'default';
+    footerSecret.addEventListener('click', () => {
+      clickCount++;
+      if (clickCount === 3) {
+        clearTimeout(clickTimer);
+        clickCount = 0;
+        window.location.href = 'yonetim-girisi.html';
+      } else {
+        clearTimeout(clickTimer);
+        clickTimer = setTimeout(() => {
+          clickCount = 0;
+        }, 1500);
+      }
+    });
+  }
 })();

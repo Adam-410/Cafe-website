@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yönetim Paneli — Masalsı Café</title>
+  <meta name="referrer" content="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,400&family=Caveat:wght@600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+
+  <!-- ================= AUTH SCREEN ================= -->
+  <div class="auth-wrapper" id="auth-screen">
+    <div class="auth-card">
+      <div class="auth-logo">
+        <span class="icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>
+        </span>
+        <span>Masalsı</span>
+      </div>
+      <p class="auth-subtitle">Yönetici Paneli Girişi</p>
+
+      <form class="auth-form" id="auth-form">
+        <div class="auth-pin-group">
+          <input
+            type="password"
+            id="auth-pin"
+            class="auth-pin-input"
+            maxlength="8"
+            placeholder="••••"
+            inputmode="numeric"
+            pattern="[0-9]*"
+            autocomplete="current-password"
+            required
+            autofocus
+            aria-label="Yönetici PIN Kodu"
+          />
+          <p class="auth-hint">Varsayılan PIN: <strong>1234</strong></p>
+        </div>
+        <div class="auth-error" id="auth-error" role="alert"></div>
+        <button type="submit" class="auth-btn">Giriş Yap</button>
+      </form>
+
+      <a href="index.html" class="auth-back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        <span>Web Sitesine Dön</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ================= DASHBOARD ================= -->
+  <div class="dashboard-wrapper" id="dashboard-screen" style="display: none;">
+
+    <!-- SIDEBAR -->
+    <aside class="dash-sidebar" id="dash-sidebar">
+      <div class="dash-brand">
+        <a href="index.html" class="brand-link" title="Siteyi Görüntüle">
+          <span class="brand-title">Masalsı</span>
+          <span class="brand-badge">Admin</span>
+        </a>
+      </div>
+
+      <ul class="dash-nav" role="tablist">
+        <li>
+          <button class="dash-nav-btn active" data-target="panel-menu" role="tab" aria-selected="true">
+            <span class="icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>
+            </span>
+            <span>Menü Yönetimi</span>
+          </button>
+        </li>
+        <li>
+          <button class="dash-nav-btn" data-target="panel-contact" role="tab" aria-selected="false">
+            <span class="icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </span>
+            <span>İletişim &amp; Saatler</span>
+          </button>
+        </li>
+        <li>
+          <button class="dash-nav-btn" data-target="panel-images" role="tab" aria-selected="false">
+            <span class="icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            </span>
+            <span>Görseller &amp; Galeri</span>
+          </button>
+        </li>
+        <li>
+          <button class="dash-nav-btn" data-target="panel-texts" role="tab" aria-selected="false">
+            <span class="icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </span>
+            <span>Metinler &amp; Hikâye</span>
+          </button>
+        </li>
+        <li>
+          <button class="dash-nav-btn" data-target="panel-settings" role="tab" aria-selected="false">
+            <span class="icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            </span>
+            <span>Ayarlar &amp; Yedek</span>
+          </button>
+        </li>
+      </ul>
+
+      <div class="dash-sidebar-footer">
+        <a href="index.html" target="_blank" class="sidebar-action-btn" title="Yeni sekmede siteyi aç">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span>Siteyi Canlı Gör</span>
+        </a>
+        <button id="btn-logout" class="sidebar-action-btn logout">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          <span>Çıkış Yap</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN WRAPPER -->
+    <main class="dash-main">
+
+      <!-- TOPBAR -->
+      <header class="dash-topbar">
+        <button class="topbar-mobile-toggle" id="mobile-sidebar-toggle" aria-label="Menüyü Aç/Kapat">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div class="topbar-title" id="topbar-title">Menü Yönetimi</div>
+        <div class="topbar-actions">
+          <button id="btn-quick-export" class="btn btn-secondary btn-sm" title="Tüm site verilerini JSON olarak indir">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+            <span class="btn-text">Yedek İndir</span>
+          </button>
+          <a href="index.html" class="btn btn-primary btn-sm" title="Siteye dön">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span class="btn-text">Siteye Git</span>
+          </a>
+        </div>
+      </header>
+
+      <!-- CONTENT BODY -->
+      <div class="dash-content">
+
+        <!-- ================= PANEL 1: MENU ================= -->
+        <section class="dash-panel active" id="panel-menu" role="tabpanel">
+          <div class="panel-header">
+            <div class="panel-title-wrap">
+              <h2>Menü Yönetimi</h2>
+              <p>Kafe menüsündeki tüm ürünleri, fiyatları ve fotoğrafları güncelleyin.</p>
+            </div>
+            <button class="btn btn-primary" id="btn-add-menu-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span>Yeni Ürün Ekle</span>
+            </button>
+          </div>
+
+          <!-- Stats -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
+              </div>
+              <div>
+                <div class="stat-num" id="stat-total-items">0</div>
+                <div class="stat-label">Toplam Ürün</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>
+              </div>
+              <div>
+                <div class="stat-num" id="stat-drinks-items">0</div>
+                <div class="stat-label">İçecekler</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4Z"/><path d="M6 2v6"/><path d="M10 2v6"/><path d="M14 2v6"/></svg>
+              </div>
+              <div>
+                <div class="stat-num" id="stat-foods-items">0</div>
+                <div class="stat-label">Yiyecekler &amp; Tatlılar</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Filter & Search Controls -->
+          <div class="menu-controls">
+            <div class="search-wrap">
+              <span class="search-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              </span>
+              <input type="text" id="menu-search-input" class="search-input" placeholder="Ürün adı veya açıklama ara..." />
+            </div>
+            <div class="filter-pills" id="menu-category-filters">
+              <button class="filter-pill active" data-filter="all">Tümü</button>
+              <button class="filter-pill" data-filter="drinks">İçecekler</button>
+              <button class="filter-pill" data-filter="food">Yiyecekler</button>
+              <button class="filter-pill" data-filter="sicak">Sıcak</button>
+              <button class="filter-pill" data-filter="soguk">Soğuk</button>
+              <button class="filter-pill" data-filter="pastalar">Pastalar</button>
+              <button class="filter-pill" data-filter="evyemekleri">Ev Yemekleri</button>
+              <button class="filter-pill" data-filter="tostlar">Tostlar</button>
+              <button class="filter-pill" data-filter="menemenler">Menemenler</button>
+              <button class="filter-pill" data-filter="yumurtalar">Yumurtalar</button>
+              <button class="filter-pill" data-filter="donerler">Döner &amp; Fast Food</button>
+            </div>
+          </div>
+
+          <!-- Menu Items Cards Grid -->
+          <div class="menu-items-grid" id="menu-admin-grid">
+            <!-- Rendered by JS -->
+          </div>
+        </section>
+
+        <!-- ================= PANEL 2: CONTACT & HOURS ================= -->
+        <section class="dash-panel" id="panel-contact" role="tabpanel">
+          <div class="panel-header">
+            <div class="panel-title-wrap">
+              <h2>İletişim, Konum &amp; Çalışma Saatleri</h2>
+              <p>Adres, telefon, e-posta, çalışma saatleri ve harita bilgilerini düzenleyin.</p>
+            </div>
+          </div>
+
+          <form id="form-contact-settings">
+            <!-- Contact details -->
+            <div class="card">
+              <h3 class="card-title">İletişim Bilgileri</h3>
+              <p class="card-desc">Web sitesinin iletişim bölümü ve altbilgisinde yer alır.</p>
+
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="contact-phone">Telefon Numarası</label>
+                  <input type="tel" id="contact-phone" placeholder="(0346) 221 45 67" required />
+                </div>
+                <div class="form-group">
+                  <label for="contact-email">E-posta Adresi</label>
+                  <input type="email" id="contact-email" placeholder="merhaba@masalsi.com" required />
+                </div>
+                <div class="form-group full-width">
+                  <label for="contact-address">Açık Adres</label>
+                  <textarea id="contact-address" rows="2" placeholder="Camiikebir Mah., Sivas Merkez..." required></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="contact-instagram">Instagram Profil Linki</label>
+                  <input type="url" id="contact-instagram" placeholder="https://www.instagram.com/..." />
+                </div>
+                <div class="form-group">
+                  <label for="contact-facebook">Facebook Profil Linki</label>
+                  <input type="url" id="contact-facebook" placeholder="https://www.facebook.com/..." />
+                </div>
+              </div>
+            </div>
+
+            <!-- Working hours -->
+            <div class="card">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-xs);">
+                <h3 class="card-title" style="margin-bottom: 0;">Çalışma Saatleri</h3>
+                <button type="button" class="btn btn-secondary btn-sm" id="btn-add-hours-row">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  <span>Yeni Gün Ekle</span>
+                </button>
+              </div>
+              <p class="card-desc">Haftanın günleri ve açılış-kapanış saatleri tablosu.</p>
+
+              <table class="hours-admin-table" id="hours-admin-table">
+                <thead>
+                  <tr>
+                    <th style="width: 45%;">Günler</th>
+                    <th style="width: 45%;">Saatler</th>
+                    <th style="width: 10%;">İşlem</th>
+                  </tr>
+                </thead>
+                <tbody id="hours-table-body">
+                  <!-- Rendered by JS -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Google Maps -->
+            <div class="card">
+              <h3 class="card-title">Harita &amp; Konum</h3>
+              <p class="card-desc">Google Haritalar yön tarifi linki ve gömülü (embed) harita iframe URL'si.</p>
+
+              <div class="form-grid">
+                <div class="form-group full-width">
+                  <label for="contact-directions">Yol Tarifi Linki (Google Maps URL)</label>
+                  <input type="url" id="contact-directions" placeholder="https://maps.google.com/?cid=..." required />
+                </div>
+                <div class="form-group full-width">
+                  <label for="contact-map-embed">Harita Gömme Linki (Embed iframe src)</label>
+                  <input type="url" id="contact-map-embed" placeholder="https://www.google.com/maps/embed?pb=..." required />
+                  <span class="hint">Google Haritalar'dan "Haritayı paylaş veya yerleştir" seçeneğindeki iframe src URL'si.</span>
+                </div>
+              </div>
+
+              <!-- Map Live Preview -->
+              <div style="margin-top: var(--space-md); border-radius: var(--radius-md); overflow: hidden; height: 220px; border: 1px solid var(--color-cream-border);">
+                <iframe id="map-preview-iframe" src="" width="100%" height="100%" style="border:0;" loading="lazy"></iframe>
+              </div>
+            </div>
+
+            <div style="display: flex; justify-content: flex-end;">
+              <button type="submit" class="btn btn-primary" style="padding: 0.8rem 2rem; font-size: 1rem;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                <span>İletişim Bilgilerini Kaydet</span>
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <!-- ================= PANEL 3: IMAGES & GALLERY ================= -->
+        <section class="dash-panel" id="panel-images" role="tabpanel">
+          <div class="panel-header">
+            <div class="panel-title-wrap">
+              <h2>Görseller &amp; Galeri</h2>
+              <p>Karşılama arka planını, hakkımızda fotoğrafını ve fotoğraf galerisini yönetin.</p>
+            </div>
+          </div>
+
+          <!-- Hero Image -->
+          <div class="card">
+            <h3 class="card-title">Hero (Giriş) Arka Plan Fotoğrafı</h3>
+            <p class="card-desc">Ana sayfanın en üstünde tam ekran görünen görsel.</p>
+            <div class="image-picker-box">
+              <img id="hero-img-preview" src="" alt="Hero Önizleme" class="preview-thumbnail" style="width: 180px; height: 110px;" />
+              <div class="image-picker-inputs">
+                <div class="form-group" style="margin-bottom: var(--space-xs);">
+                  <label for="hero-img-url">Görsel URL'si</label>
+                  <input type="url" id="hero-img-url" placeholder="https://..." />
+                </div>
+                <div>
+                  <label class="file-upload-label">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                    <span>Cihazdan Fotoğraf Seç</span>
+                    <input type="file" id="hero-img-file" class="file-upload-input" accept="image/*" />
+                  </label>
+                  <span class="hint" style="margin-left: var(--space-xs);">JPG, PNG veya WebP</span>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top: var(--space-md); text-align: right;">
+              <button type="button" id="btn-save-hero-image" class="btn btn-primary btn-sm">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                <span>Giriş Görselini Kaydet</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- About Image -->
+          <div class="card">
+            <h3 class="card-title">Hakkımızda Bölümü Fotoğrafı</h3>
+            <p class="card-desc">Hikâyemiz kısmında yan tarafta gösterilen görsel.</p>
+            <div class="image-picker-box">
+              <img id="about-img-preview" src="" alt="Hakkımızda Önizleme" class="preview-thumbnail" style="width: 140px; height: 140px;" />
+              <div class="image-picker-inputs">
+                <div class="form-group" style="margin-bottom: var(--space-xs);">
+                  <label for="about-img-url">Görsel URL'si</label>
+                  <input type="url" id="about-img-url" placeholder="https://..." />
+                </div>
+                <div>
+                  <label class="file-upload-label">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                    <span>Cihazdan Fotoğraf Seç</span>
+                    <input type="file" id="about-img-file" class="file-upload-input" accept="image/*" />
+                  </label>
+                  <span class="hint" style="margin-left: var(--space-xs);">JPG, PNG veya WebP</span>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top: var(--space-md); text-align: right;">
+              <button type="button" id="btn-save-about-image" class="btn btn-primary btn-sm">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                <span>Hakkımızda Görselini Kaydet</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Gallery Photos -->
+          <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-xs);">
+              <h3 class="card-title" style="margin-bottom: 0;">Galeri Fotoğrafları</h3>
+              <button type="button" class="btn btn-primary btn-sm" id="btn-add-gallery-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                <span>Yeni Fotoğraf Ekle</span>
+              </button>
+            </div>
+            <p class="card-desc">Atmosfer bölümünde ziyaretçilerin tıkladığında büyütebildiği fotoğraflar.</p>
+
+            <div class="gallery-admin-grid" id="gallery-admin-grid">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= PANEL 4: TEXTS & STORY ================= -->
+        <section class="dash-panel" id="panel-texts" role="tabpanel">
+          <div class="panel-header">
+            <div class="panel-title-wrap">
+              <h2>Metinler &amp; Hikâye</h2>
+              <p>Hero karşılama başlıklarını ve hakkımızda hikâye paragraflarını güncelleyin.</p>
+            </div>
+          </div>
+
+          <form id="form-texts-settings">
+            <!-- Hero Texts -->
+            <div class="card">
+              <h3 class="card-title">Giriş (Hero) Başlıkları</h3>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="hero-eyebrow">Üst Başlık (Eyebrow)</label>
+                  <input type="text" id="hero-eyebrow" placeholder="Mahallenizin Kalbinde" required />
+                </div>
+                <div class="form-group">
+                  <label for="hero-badge">Yuvarlak Rozet Yazısı</label>
+                  <input type="text" id="hero-badge" placeholder="Taze &amp; El Yapımı" required />
+                </div>
+                <div class="form-group">
+                  <label for="hero-title-main">Ana Başlık (1. Satır)</label>
+                  <input type="text" id="hero-title-main" placeholder="Bir Yudum" required />
+                </div>
+                <div class="form-group">
+                  <label for="hero-title-accent">Vurgulu Başlık (2. Satır - İtalik)</label>
+                  <input type="text" id="hero-title-accent" placeholder="Hikâye" required />
+                </div>
+                <div class="form-group full-width">
+                  <label for="hero-tagline">Alt Açıklama (Slogan)</label>
+                  <input type="text" id="hero-tagline" placeholder="Her fincan bir sohbetin..." required />
+                </div>
+              </div>
+            </div>
+
+            <!-- About Texts -->
+            <div class="card">
+              <h3 class="card-title">Hakkımızda (Hikâyemiz) Metinleri</h3>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="about-eyebrow">Bölüm Üst Yazısı</label>
+                  <input type="text" id="about-eyebrow" placeholder="Hikâyemiz" required />
+                </div>
+                <div class="form-group">
+                  <label for="about-badge-year">Rozet Üst Satır</label>
+                  <input type="text" id="about-badge-year" placeholder="2019'dan beri" required />
+                </div>
+                <div class="form-group">
+                  <label for="about-heading-main">Başlık (Normal Kısım)</label>
+                  <input type="text" id="about-heading-main" placeholder="Sadece Kahve Değil," required />
+                </div>
+                <div class="form-group">
+                  <label for="about-heading-accent">Başlık (Vurgulu Kısım)</label>
+                  <input type="text" id="about-heading-accent" placeholder="Bir Sığınak" required />
+                </div>
+                <div class="form-group full-width">
+                  <label for="about-p1">1. Paragraf</label>
+                  <textarea id="about-p1" rows="3" required></textarea>
+                </div>
+                <div class="form-group full-width">
+                  <label for="about-p2">2. Paragraf</label>
+                  <textarea id="about-p2" rows="3" required></textarea>
+                </div>
+                <div class="form-group full-width">
+                  <label for="about-p3">3. Paragraf</label>
+                  <textarea id="about-p3" rows="3" required></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div style="display: flex; justify-content: flex-end;">
+              <button type="submit" class="btn btn-primary" style="padding: 0.8rem 2rem; font-size: 1rem;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                <span>Metinleri Kaydet</span>
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <!-- ================= PANEL 5: SETTINGS & BACKUP ================= -->
+        <section class="dash-panel" id="panel-settings" role="tabpanel">
+          <div class="panel-header">
+            <div class="panel-title-wrap">
+              <h2>Ayarlar &amp; Veri Yedekleme</h2>
+              <p>PIN şifresini değiştirin, site verilerini yedekleyin veya geri yükleyin.</p>
+            </div>
+          </div>
+
+          <!-- PIN Change -->
+          <div class="card">
+            <h3 class="card-title">Yönetici PIN Kodu Değiştir</h3>
+            <p class="card-desc">Giriş yaparken kullanılan güvenlik PIN kodunu güncelleyin.</p>
+
+            <form id="form-change-pin" style="max-width: 420px;">
+              <div class="form-group">
+                <label for="current-pin">Mevcut PIN</label>
+                <input type="password" id="current-pin" maxlength="8" required />
+              </div>
+              <div class="form-group">
+                <label for="new-pin">Yeni PIN (en az 4 hane)</label>
+                <input type="password" id="new-pin" maxlength="8" required />
+              </div>
+              <div class="form-group">
+                <label for="confirm-new-pin">Yeni PIN Tekrar</label>
+                <input type="password" id="confirm-new-pin" maxlength="8" required />
+              </div>
+              <button type="submit" class="btn btn-primary btn-sm">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <span>PIN'i Güncelle</span>
+              </button>
+            </form>
+          </div>
+
+          <!-- Backup & Restore -->
+          <div class="card">
+            <h3 class="card-title">Yedekleme &amp; Geri Yükleme</h3>
+            <p class="card-desc">Tüm menüyü, resimleri, saatleri ve metinleri tek tıkla bilgisayarınıza yedekleyin veya yedekten yükleyin.</p>
+
+            <div style="display: flex; gap: var(--space-md); flex-wrap: wrap; align-items: center;">
+              <button id="btn-export-backup" class="btn btn-secondary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span>Verileri Yedekle (JSON İndir)</span>
+              </button>
+
+              <label class="btn btn-secondary" style="cursor: pointer;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                <span>Yedekten Geri Yükle</span>
+                <input type="file" id="file-import-backup" accept=".json" style="display:none;" />
+              </label>
+            </div>
+          </div>
+
+          <!-- Factory Reset -->
+          <div class="card" style="border-color: hsl(var(--hue-danger) 50% 80%); background: hsl(var(--hue-danger) 65% 98%);">
+            <h3 class="card-title" style="color: var(--color-error);">Fabrika Ayarlarına Sıfırla</h3>
+            <p class="card-desc">Tüm menüyü ve içerikleri orijinal varsayılan ayarlarına geri döndürür. Bu işlem geri alınamaz.</p>
+            <button id="btn-trigger-reset" class="btn btn-danger">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              <span>Orijinal Ayarlara Döndür</span>
+            </button>
+          </div>
+        </section>
+
+      </div><!-- /.dash-content -->
+    </main>
+  </div>
+
+  <!-- ================= MODAL: ADD / EDIT MENU ITEM ================= -->
+  <dialog id="modal-menu-item">
+    <form id="form-menu-item" method="dialog">
+      <div class="modal-header">
+        <h3 id="modal-menu-item-title">Yeni Ürün Ekle</h3>
+        <button type="button" class="modal-close" data-close="modal-menu-item" aria-label="Kapat">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <input type="hidden" id="menu-item-id" />
+
+        <div class="form-group">
+          <label for="menu-item-name">Ürün Adı</label>
+          <input type="text" id="menu-item-name" placeholder="Örn: Türk Kahvesi" required />
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="menu-item-price">Fiyat (₺)</label>
+            <input type="text" id="menu-item-price" placeholder="₺100" required />
+          </div>
+          <div class="form-group">
+            <label for="menu-item-tag">Etiket / Rozet (İsteğe Bağlı)</label>
+            <input type="text" id="menu-item-tag" placeholder="Örn: Özel, Yeni, Favori" />
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="menu-item-main-cat">Ana Kategori</label>
+            <select id="menu-item-main-cat" required>
+              <option value="drinks">İçecekler</option>
+              <option value="food">Yiyecekler</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="menu-item-sub-cat">Alt Kategori</label>
+            <select id="menu-item-sub-cat" required>
+              <!-- Populated dynamically based on main category -->
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="menu-item-desc">Açıklama / İçerik</label>
+          <textarea id="menu-item-desc" rows="2" placeholder="Ürün açıklaması, servis şekli, gramaj vb." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Ürün Görseli</label>
+          <div class="image-picker-box">
+            <img id="menu-item-img-preview" src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=200" alt="Önizleme" class="preview-thumbnail" />
+            <div class="image-picker-inputs">
+              <input type="url" id="menu-item-img-url" placeholder="https://images.unsplash.com/..." />
+              <div>
+                <label class="file-upload-label">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                  <span>Dosya Yükle</span>
+                  <input type="file" id="menu-item-img-file" class="file-upload-input" accept="image/*" />
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-close="modal-menu-item">İptal</button>
+        <button type="submit" class="btn btn-primary" id="btn-save-menu-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+          <span>Kaydet</span>
+        </button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- ================= MODAL: ADD / EDIT GALLERY ITEM ================= -->
+  <dialog id="modal-gallery-item">
+    <form id="form-gallery-item" method="dialog">
+      <div class="modal-header">
+        <h3 id="modal-gallery-item-title">Yeni Galeri Fotoğrafı</h3>
+        <button type="button" class="modal-close" data-close="modal-gallery-item" aria-label="Kapat">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <input type="hidden" id="gallery-item-id" />
+
+        <div class="form-group">
+          <label for="gallery-item-label">Fotoğraf Başlığı / Açıklaması</label>
+          <input type="text" id="gallery-item-label" placeholder="Örn: Masalsı Café iç mekan" required />
+        </div>
+
+        <div class="form-group">
+          <label for="gallery-item-span">Izgara Yerleşim Boyutu</label>
+          <select id="gallery-item-span">
+            <option value="normal">Normal (Kare/Standart)</option>
+            <option value="tall">Dikey (Tall - 2 satır kaplar)</option>
+            <option value="wide">Geniş (Wide - 2 sütun kaplar)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Fotoğraf</label>
+          <div class="image-picker-box">
+            <img id="gallery-item-img-preview" src="" alt="Önizleme" class="preview-thumbnail" style="width: 140px; height: 100px;" />
+            <div class="image-picker-inputs">
+              <input type="url" id="gallery-item-img-url" placeholder="https://..." />
+              <div>
+                <label class="file-upload-label">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                  <span>Fotoğraf Yükle</span>
+                  <input type="file" id="gallery-item-img-file" class="file-upload-input" accept="image/*" />
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-close="modal-gallery-item">İptal</button>
+        <button type="submit" class="btn btn-primary">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          <span>Galeriye Ekle</span>
+        </button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- ================= MODAL: CONFIRM DELETE ================= -->
+  <dialog id="modal-confirm-delete">
+    <div class="modal-header">
+      <h3>Silme Onayı</h3>
+      <button type="button" class="modal-close" data-close="modal-confirm-delete" aria-label="Kapat">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p id="confirm-delete-message">Bu öğeyi silmek istediğinizden emin misiniz?</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-close="modal-confirm-delete">Vazgeç</button>
+      <button type="button" class="btn btn-danger" id="btn-confirm-delete-action">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+        <span>Evet, Sil</span>
+      </button>
+    </div>
+  </dialog>
+
+  <!-- ================= MODAL: CONFIRM RESET ================= -->
+  <dialog id="modal-confirm-reset">
+    <div class="modal-header">
+      <h3 style="color: var(--color-error);">Fabrika Ayarlarına Dönüş</h3>
+      <button type="button" class="modal-close" data-close="modal-confirm-reset" aria-label="Kapat">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p style="margin-bottom: var(--space-xs);">Tüm menü öğeleri, görseller ve site ayarları orijinal haline dönecektir.</p>
+      <p><strong>Bu işlem sonrasında mevcut özel değişiklikleriniz kaybolacaktır. Devam etmek istiyor musunuz?</strong></p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-close="modal-confirm-reset">Vazgeç</button>
+      <button type="button" class="btn btn-danger" id="btn-confirm-reset-action">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span>Evet, Sıfırla</span>
+      </button>
+    </div>
+  </dialog>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script src="cms-data.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
